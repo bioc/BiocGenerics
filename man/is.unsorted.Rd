@@ -12,11 +12,11 @@
   See \code{?base::\link[base]{is.unsorted}} for the default method
   (defined in the \pkg{base} package).
   Bioconductor packages can define specific methods for objects
-  not supported by the default method.
+  (typically vector-like) not supported by the default method.
 }
 
 \usage{
-is.unsorted(x, na.rm=FALSE, strictly=FALSE)
+is.unsorted(x, na.rm=FALSE, strictly=FALSE, ...)
 }
 
 \arguments{
@@ -26,6 +26,12 @@ is.unsorted(x, na.rm=FALSE, strictly=FALSE)
   \item{na.rm, strictly}{
     See \code{?base::\link[base]{is.unsorted}} for a description of
     these arguments.
+  }
+  \item{...}{
+    Additional arguments, for use in specific methods.
+
+    Note that \code{base::\link[base]{is.unsorted}} (the default method) only
+    takes the \code{x}, \code{na.rm}, and \code{strictly} arguments.
   }
 }
 

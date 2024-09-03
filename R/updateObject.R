@@ -210,7 +210,8 @@ updateObjectFromFields <-
 ### defined in the DOSE package) and if the DOSE package was indirectly loaded
 ### with library(TimiRGeN).
 ### This helper function will make sure that the package gets attached.
-### NOT exported but used in the updateObject package.
+### NOT exported but used in the updateObject package (in addition to being
+### used in the updateObject() generic function below).
 attach_classdef_pkg <- function(x_class)
 {
     classdef_pkg <- attr(x_class, "package")
@@ -230,19 +231,29 @@ setGeneric("updateObject", signature="object",
     {
         if (!isTRUEorFALSE(verbose))
             stop("'verbose' must be TRUE or FALSE")
-        ## We silently try to **attach** (loaded is not enough) the package
-        ## where class(object) is defined.
-        ## Oops! Nope, let's not do this. Problem with doing this is that
-        ## many packages call updateObject() internally e.g. analyzeSNPhood()
-        ## in the SNPhood package calls the estimateSizeFactors() method
-        ## for DESeqDataSet objects, which in turn calls updateObject().
-        ## As a result, calling analyzeSNPhood() will attach DESeq2 to the
-        ## search path if it's not already attached. This is not good. See
-        ## https://stat.ethz.ch/pipermail/bioc-devel/2023-October/020024.html
-        ## for the full story.
-        ## Generally speaking, package functionalities should not have the
-        ## side effect of altering the search path.
-        #try(attach_classdef_pkg(class(object)), silent=TRUE)
+        if (isTRUE(getOption("updateObject.can.attach.packages"))) {
+            ## We silently try to **attach** (loading is not enough) the
+            ## package where class(object) is defined. This increases
+            ## the chances of success of updateObject(object) (see
+            ## attach_classdef_pkg() above for the details).
+            ## Note that we don't do this by default, only if global
+            ## option "updateObject.can.attach.packages" is set to TRUE.
+            ## Problem with doing this by default (i.e. for regular use of
+            ## updateObject()) is that many packages call updateObject()
+            ## internally e.g. analyzeSNPhood() in the SNPhood package calls
+            ## the estimateSizeFactors() method for DESeqDataSet objects,
+            ## which in turn calls updateObject(). As a result, calling
+            ## analyzeSNPhood() will attach DESeq2 to the search path if
+            ## it's not already attached. Which is not good. See
+            ## https://stat.ethz.ch/pipermail/bioc-devel/2023-October/020024.html
+            ## for the full story.
+            ## Generally speaking, package functionalities should not have
+            ## the side effect of altering the search path.
+            ## The one place where we actually set global option
+            ## "updateObject.can.attach.packages" to TRUE is in
+            ## updateObject:::.update_object().
+            try(attach_classdef_pkg(class(object)), silent=TRUE)
+        }
         result <- standardGeneric("updateObject")
         check <- list(...)$check
         if (is.null(check)) {

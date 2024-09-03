@@ -31,7 +31,7 @@
 }
 
 \usage{
-Reduce(f, x, init, right=FALSE, accumulate=FALSE)
+Reduce(f, x, init, right=FALSE, accumulate=FALSE, simplify=TRUE)
 Filter(f, x)
 Find(f, x, right=FALSE, nomatch=NULL)
 Map(f, ...)
@@ -39,7 +39,7 @@ Position(f, x, right=FALSE, nomatch=NA_integer_)
 }
 
 \arguments{
-  \item{f, init, right, accumulate, nomatch}{
+  \item{f, init, right, accumulate, nomatch, simplify}{
     See \code{?base::\link[base]{Reduce}} for a description of
     these arguments.
   }

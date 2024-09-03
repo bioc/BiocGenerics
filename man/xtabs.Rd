@@ -19,12 +19,13 @@
 
 \usage{
 xtabs(formula=~., data=parent.frame(), subset, sparse=FALSE, 
-      na.action, addNA=FALSE, exclude=if(!addNA)c(NA, NaN),
+      na.action, na.rm=FALSE, addNA=FALSE, exclude=if(!addNA)c(NA, NaN),
       drop.unused.levels=FALSE)
 }
 
 \arguments{
-  \item{formula, subset, sparse, na.action, addNA, exclude, drop.unused.levels}{
+  \item{formula, subset, sparse, na.action, na.rm, addNA,
+        exclude, drop.unused.levels}{
     See \code{?stats::\link[stats]{xtabs}} for a description of
     these arguments.
   }

@@ -77,14 +77,14 @@ type(x) <- value
     \item \code{\link[methods]{selectMethod}} for getting the definition of
           a specific method.
 
-    \item \link[DelayedArray]{type,ANY-method} in the \pkg{DelayedArray}
+    \item \link[S4Arrays]{type,ANY-method} in the \pkg{S4Arrays}
           package for the default \code{type} method.
 
     \item \link[S4Arrays]{type,DataFrame-method} in the \pkg{S4Arrays}
-          package, and \link[Biostrings]{type,PairwiseAlignments-method} in
-          the \pkg{Biostrings} package, for examples of specific \code{type}
+          package, and \link[pwalign]{type,PairwiseAlignments-method} in
+          the \pkg{pwalign} package, for examples of specific \code{type}
           methods (defined for \link[S4Vectors]{DataFrame} and
-          \link[Biostrings]{PairwiseAlignments} objects, respectively).
+          \link[pwalign]{PairwiseAlignments} objects, respectively).
 
     \item \link{BiocGenerics} for a summary of all the generics defined
           in the \pkg{BiocGenerics} package.
@@ -115,11 +115,11 @@ stopifnot(identical(type(df), typeof(as.matrix(df))))
 
 ## Examples of methods defined in other packages:
 
-library(DelayedArray)
+library(S4Arrays)
 showMethods("type")
 selectMethod("type", "ANY")  # the default "type" method
 
-library(Biostrings)
+library(pwalign)
 showMethods("type")
 ## The type() method for PairwiseAlignments objects:
 selectMethod("type", "PairwiseAlignments")

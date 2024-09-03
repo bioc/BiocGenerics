@@ -48,9 +48,9 @@ aperm(a, perm, ...)
     \item \code{\link[methods]{selectMethod}} for getting the definition of
           a specific method.
 
-    \item \link[DelayedArray]{aperm,DelayedArray-method} in the
-          \pkg{DelayedArray} package for an example of a specific
-          \code{aperm} method (defined for \link[DelayedArray]{DelayedArray}
+    \item \link[SparseArray]{aperm,SVT_SparseArray-method} in the
+          \pkg{SparseArray} package for an example of a specific
+          \code{aperm} method (defined for \link[SparseArray]{SVT_SparseArray}
           objects).
 
     \item \link{BiocGenerics} for a summary of all the generics defined

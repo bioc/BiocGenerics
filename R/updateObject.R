@@ -160,7 +160,7 @@ updateObjectFromFields <-
 
 
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-### attach_classdef_pkg()
+### attach_classdef_and_updateobjdef_pkgs()
 ###
 
 ### Known invalid packages found in 'attr(class(x), "package")' as of
@@ -205,19 +205,28 @@ updateObjectFromFields <-
 }
 
 ### For some unclear reasons, updateObject(x) will fail sometimes if the
-### package where class(x) is defined is loaded but not attached. This happens
-### for example if 'x' is of class enrichResult (the enrichResult class is
-### defined in the DOSE package) and if the DOSE package was indirectly loaded
-### with library(TimiRGeN).
-### This helper function will make sure that the package gets attached.
+### package where class(x) is defined ("classdef" pkg) is loaded but not
+### attached, or if the package where the updateObject() method for objects
+### of class class(x) is defined ("updateobjdef" pkg) is loaded but not
+### attached.
+### This happens for example if 'x' is of class enrichResult (the enrichResult
+### class is defined in the DOSE package) and if the DOSE package was
+### indirectly loaded with library(TimiRGeN).
+### This helper function will make sure that the "classdef" and "updateobjdef"
+### packages gets attached.
 ### NOT exported but used in the updateObject package (in addition to being
 ### used in the updateObject() generic function below).
-attach_classdef_pkg <- function(x_class)
+attach_classdef_and_updateobjdef_pkgs <- function(x_class)
 {
     classdef_pkg <- attr(x_class, "package")
     if (is.null(classdef_pkg) || classdef_pkg %in% .KNOWN_INVALID_CLASSDEF_PKGS)
         return()
-    .attach_namespace(classdef_pkg)  # do NOT use loadNamespace()
+    .attach_namespace(classdef_pkg)
+    updateobjdef <- selectMethod(updateObject, x_class)
+    updateobjdef_pkg <- environmentName(environment(updateobjdef))
+    if (updateobjdef_pkg == "R_GlobalEnv")
+        return()
+    .attach_namespace(updateobjdef_pkg)
 }
 
 
@@ -233,9 +242,11 @@ setGeneric("updateObject", signature="object",
             stop("'verbose' must be TRUE or FALSE")
         if (isTRUE(getOption("updateObject.can.attach.packages"))) {
             ## We silently try to **attach** (loading is not enough) the
-            ## package where class(object) is defined. This increases
-            ## the chances of success of updateObject(object) (see
-            ## attach_classdef_pkg() above for the details).
+            ## packages where class(object) and
+            ## selectMethod(updateObject, class(object)) are defined.
+            ## This increases the chances of success of updateObject(object).
+            ## See attach_classdef_and_updateobjdef_pkgs() above for the
+            ## details.
             ## Note that we don't do this by default, only if global
             ## option "updateObject.can.attach.packages" is set to TRUE.
             ## Problem with doing this by default (i.e. for regular use of
@@ -252,7 +263,8 @@ setGeneric("updateObject", signature="object",
             ## The one place where we actually set global option
             ## "updateObject.can.attach.packages" to TRUE is in
             ## updateObject:::.update_object().
-            try(attach_classdef_pkg(class(object)), silent=TRUE)
+            try(attach_classdef_and_updateobjdef_pkgs(class(object)),
+                silent=TRUE)
         }
         result <- standardGeneric("updateObject")
         check <- list(...)$check

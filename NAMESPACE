@@ -195,6 +195,9 @@ export(
     ## from R/combine.R:
     combine,
 
+    ## from R/containsOutOfMemoryData.R:
+    containsOutOfMemoryData,
+
     ## from R/dbconn.R:
     dbconn, dbfile,
 
@@ -256,6 +259,9 @@ export(
 exportMethods(
     ## from R/combine.R:
     combine,
+
+    ## from R/containsOutOfMemoryData.R:
+    containsOutOfMemoryData,
 
     ## from R/path.R:
     basename, "basename<-",

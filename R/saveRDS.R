@@ -9,3 +9,16 @@
 
 setGeneric("saveRDS", signature="object")
 
+### Note that this overwrites base::saveRDS()!
+setMethod("saveRDS", "ANY",
+    function(object, file="", ascii=FALSE, version=NULL,
+             compress=TRUE, refhook=NULL)
+    {
+        if (containsOutOfMemoryData(object))
+            warning("object contains out-of-memory data so cannot ",
+                    "be serialized reliably")
+        base::saveRDS(object, file=file, ascii=ascii, version=version,
+                      compress=compress, refhook=refhook)
+    }
+)
+

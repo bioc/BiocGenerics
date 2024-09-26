@@ -12,8 +12,8 @@ Maintainer: Hervé Pagès <hpages.on.github@gmail.com>
 Depends: R (>= 4.0.0), methods, utils, graphics, stats
 Imports: methods, utils, graphics, stats
 Suggests: Biobase, S4Vectors, IRanges, S4Arrays, SparseArray, DelayedArray,
-	GenomicRanges, pwalign, Rsamtools, AnnotationDbi, affy, affyPLM,
-	DESeq2, flowClust, MSnbase, annotate, RUnit
+	HDF5Array, GenomicRanges, pwalign, Rsamtools, AnnotationDbi,
+	affy, affyPLM, DESeq2, flowClust, MSnbase, annotate, RUnit
 Collate: S3-classes-as-S4-classes.R
 	utils.R
 	normarg-utils.R
@@ -68,6 +68,7 @@ Collate: S3-classes-as-S4-classes.R
 	xtabs.R
 	annotation.R
 	combine.R
+	containsOutOfMemoryData.R
 	dbconn.R
 	dge.R
 	dims.R

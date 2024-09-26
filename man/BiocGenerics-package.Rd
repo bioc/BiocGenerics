@@ -158,6 +158,8 @@
 
       \item \code{\link[BiocGenerics]{combine}}
 
+      \item \code{\link[BiocGenerics]{containsOutOfMemoryData}}
+
       \item \code{\link[BiocGenerics]{dbconn}},
             \code{\link[BiocGenerics]{dbfile}}
 

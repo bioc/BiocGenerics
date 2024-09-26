@@ -98,6 +98,9 @@ export(
     ## from R/row_colnames.R:
     rownames, "rownames<-", colnames, "colnames<-",
 
+    ## from R/saveRDS.R:
+    saveRDS,
+
     ## from R/sets.R:
     union, intersect, setdiff,
 

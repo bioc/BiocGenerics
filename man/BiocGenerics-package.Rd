@@ -90,6 +90,8 @@
             \code{BiocGenerics::\link[BiocGenerics]{colnames}},
             \code{BiocGenerics::\link[BiocGenerics]{colnames<-}}
 
+      \item \code{BiocGenerics::\link[BiocGenerics]{saveRDS}}
+
       \item sets:
             \code{BiocGenerics::\link[BiocGenerics]{union}},
             \code{BiocGenerics::\link[BiocGenerics]{intersect}},

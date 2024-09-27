@@ -12,7 +12,10 @@ exportClasses(
     character_OR_connection,
     AsIs,
     #table, xtabs,
-    dist
+    dist,
+
+    ## from R/containsOutOfMemoryData.R:
+    OutOfMemoryObject
 )
 
 

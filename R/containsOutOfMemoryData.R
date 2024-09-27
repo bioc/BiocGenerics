@@ -8,3 +8,9 @@ setGeneric("containsOutOfMemoryData",
 
 setMethod("containsOutOfMemoryData", "ANY", function(object) FALSE)
 
+setClass("OutOfMemoryObject", representation("VIRTUAL"))
+
+setMethod("containsOutOfMemoryData", "OutOfMemoryObject",
+    function(object) TRUE
+)
+

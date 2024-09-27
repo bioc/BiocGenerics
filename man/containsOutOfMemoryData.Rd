@@ -3,6 +3,12 @@
 \alias{containsOutOfMemoryData}
 \alias{containsOutOfMemoryData,ANY-method}
 
+\alias{class:OutOfMemoryObject}
+\alias{OutOfMemoryObject-class}
+\alias{OutOfMemoryObject}
+
+\alias{containsOutOfMemoryData,OutOfMemoryObject-method}
+
 \title{Does an object contain out-of-memory data?}
 
 \description{
@@ -17,7 +23,7 @@
   object contains out-of-memory data or not.
 
   Note that objects with out-of-memory data are usually not compatible
-  with a serialization/unserialization cycle. More concretely,
+  with a serialization/unserialization roundtrip. More concretely,
   \code{base::\link[base]{saveRDS}()}/\code{base::\link[base]{readRDS}()}
   tend to silently break them!
 
@@ -36,8 +42,8 @@ containsOutOfMemoryData(object)
 }
 
 \details{
-  Note that an object can store \emph{some} of its data on disk
-  and \emph{some} of it in memory. This is the case for example when a
+  An object can store \emph{some} of its data on disk and
+  \emph{some} of it in memory. This is the case for example when a
   \link[SummarizedExperiment]{SummarizedExperiment} object (or derivative)
   has some of its assays on disk (e.g. in \link[HDF5Array]{HDF5Matrix}
   objects) and others in memory (e.g. in ordinary matrices and/or
@@ -53,6 +59,26 @@ containsOutOfMemoryData(object)
   \code{TRUE} or \code{FALSE}.
 }
 
+\note{
+  TO DEVELOPERS:
+
+  The \pkg{BiocGenerics} package also defines the following:
+  \itemize{
+    \item A default \code{containsOutOfMemoryData()} method that returns
+          \code{FALSE}.
+    \item The OutOfMemoryObject class. This is a virtual S4 class with
+          no slots that any class defined in Bioconductor that represents
+          out-of-memory objects should extend.
+    \item A \code{containsOutOfMemoryData()} method for OutOfMemoryObject
+          derivatives that returns \code{TRUE}.
+  }
+  Therefore, if you implement a class that uses an out-of-memory
+  representation, make sure that it contains the OutOfMemoryObject class.
+  This will make \code{containsOutOfMemoryData()} return \code{TRUE} on your
+  objects, so you don't need to define a \code{containsOutOfMemoryData()}
+  method for them.
+}
+
 \seealso{
   \itemize{
     \item \code{\link[methods]{showMethods}} for displaying a summary of the
@@ -60,11 +86,6 @@ containsOutOfMemoryData(object)
 
     \item \code{\link[methods]{selectMethod}} for getting the definition of
           a specific method.
-
-    \item \link[HDF5Array]{containsOutOfMemoryData,HDF5ArraySeed-method}
-          in the \pkg{HDF5Array} package for an example of a specific
-          \code{containsOutOfMemoryData} method (defined for
-          \link[HDF5Array]{HDF5ArraySeed} objects).
 
     \item \link{BiocGenerics} for a summary of all the generics defined
           in the \pkg{BiocGenerics} package.
@@ -74,7 +95,10 @@ containsOutOfMemoryData(object)
 \examples{
 containsOutOfMemoryData
 showMethods("containsOutOfMemoryData")
-selectMethod("containsOutOfMemoryData", "ANY")  # the default method
+## The default method:
+selectMethod("containsOutOfMemoryData", "ANY")
+## The method for OutOfMemoryObject derivatives:
+selectMethod("containsOutOfMemoryData", "OutOfMemoryObject")
 
 m <- matrix(0, nrow=7, ncol=10)
 m[sample(length(m), 20)] <- runif(20)

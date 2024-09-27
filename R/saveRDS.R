@@ -14,9 +14,10 @@ setMethod("saveRDS", "ANY",
     function(object, file="", ascii=FALSE, version=NULL,
              compress=TRUE, refhook=NULL)
     {
+        ## Only a warning for now. Should we make this an error?
         if (containsOutOfMemoryData(object))
-            warning("object contains out-of-memory data so cannot ",
-                    "be serialized reliably")
+            warning("Object contains out-of-memory data so cannot be ",
+                    "serialized reliably.\n  See '?containsOutOfMemoryData'.")
         base::saveRDS(object, file=file, ascii=ascii, version=version,
                       compress=compress, refhook=refhook)
     }

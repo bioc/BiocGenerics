@@ -2,6 +2,8 @@
 
 \alias{containsOutOfMemoryData}
 \alias{containsOutOfMemoryData,ANY-method}
+\alias{containsOutOfMemoryData,list-method}
+\alias{containsOutOfMemoryData,environment-method}
 
 \alias{class:OutOfMemoryObject}
 \alias{OutOfMemoryObject-class}
@@ -65,7 +67,17 @@ containsOutOfMemoryData(object)
   The \pkg{BiocGenerics} package also defines the following:
   \itemize{
     \item A default \code{containsOutOfMemoryData()} method that returns
-          \code{FALSE}.
+          \code{TRUE} if \code{object} is an S4 object with at least one
+          slot for which \code{containsOutOfMemoryData()} is \code{TRUE}
+          (recursive definition), and \code{FALSE} otherwise.
+    \item A \code{containsOutOfMemoryData()} method for \code{list} objects
+          that returns \code{TRUE} if \code{object} has at least one
+          list element for which \code{containsOutOfMemoryData()} is
+          \code{TRUE} (recursive definition), and \code{FALSE} otherwise.
+    \item A \code{containsOutOfMemoryData()} method for \code{environment}
+          objects that returns \code{TRUE} if \code{object} contains at least
+          one object for which \code{containsOutOfMemoryData()} is \code{TRUE}
+          (recursive definition), and \code{FALSE} otherwise.
     \item The OutOfMemoryObject class. This is a virtual S4 class with
           no slots that any class defined in Bioconductor that represents
           out-of-memory objects should extend.
@@ -95,8 +107,13 @@ containsOutOfMemoryData(object)
 \examples{
 containsOutOfMemoryData
 showMethods("containsOutOfMemoryData")
+
 ## The default method:
 selectMethod("containsOutOfMemoryData", "ANY")
+
+## The method for list objects:
+selectMethod("containsOutOfMemoryData", "list")
+
 ## The method for OutOfMemoryObject derivatives:
 selectMethod("containsOutOfMemoryData", "OutOfMemoryObject")
 
@@ -108,11 +125,13 @@ library(SparseArray)
 svt <- as(m, "SparseArray")
 svt
 containsOutOfMemoryData(m)  # FALSE
+containsOutOfMemoryData(list(m, svt))  # FALSE
 
 library(HDF5Array)
 M <- as(m, "HDF5Array")
 M
 containsOutOfMemoryData(M)  # TRUE
+containsOutOfMemoryData(list(m, svt, M))  # TRUE
 }
 
 \keyword{methods}

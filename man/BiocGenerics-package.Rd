@@ -12,12 +12,17 @@
 
 \details{
   We divide the generic functions defined in the \pkg{BiocGenerics} package
-  in 2 categories: (1) functions already defined in base R and explicitly
-  promoted to generics in BiocGenerics, and (2) Bioconductor specific
-  generics.
+  in 2 categories:
+  \enumerate{
+    \item Functions already defined in base R or in CRAN package
+          \pkg{generics} and explicitly promoted to S4 generics in
+          \pkg{BiocGenerics}
+    \item S4 generics specific to Bioconductor.
+  }
 
-  \subsection{(1) Functions defined in base R and explicitly promoted to
-              generics in the \pkg{BiocGenerics} package}{
+  \subsection{(1) Functions defined in base R or CRAN package \pkg{generics}
+              and explicitly promoted to S4 generics in the \pkg{BiocGenerics}
+              package}{
 
     Generics for functions defined in package \pkg{base}:
     \itemize{
@@ -92,11 +97,6 @@
 
       \item \code{BiocGenerics::\link[BiocGenerics]{saveRDS}}
 
-      \item sets:
-            \code{BiocGenerics::\link[BiocGenerics]{union}},
-            \code{BiocGenerics::\link[BiocGenerics]{intersect}},
-            \code{BiocGenerics::\link[BiocGenerics]{setdiff}}
-
       \item \code{BiocGenerics::\link[BiocGenerics]{sort}}
 
       \item \code{BiocGenerics::\link[BiocGenerics]{start}},
@@ -149,9 +149,17 @@
 
       \item \code{BiocGenerics::\link[BiocGenerics]{xtabs}}
     }
+
+    Generics for functions defined in CRAN package \pkg{generics}:
+    \itemize{
+      \item setops:
+            \code{BiocGenerics::\link[BiocGenerics]{union}},
+            \code{BiocGenerics::\link[BiocGenerics]{intersect}},
+            \code{BiocGenerics::\link[BiocGenerics]{setdiff}}
+    }
   }
 
-  \subsection{(2) Bioconductor specific generics}{
+  \subsection{(2) S4 generics specific to Bioconductor}{
     \itemize{
       \item \code{\link[BiocGenerics]{annotation}},
             \code{\link[BiocGenerics]{annotation<-}}

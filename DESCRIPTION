@@ -4,12 +4,12 @@ Description: The package defines many S4 generic functions used in Bioconductor.
 biocViews: Infrastructure
 URL: https://bioconductor.org/packages/BiocGenerics
 BugReports: https://github.com/Bioconductor/BiocGenerics/issues
-Version: 0.53.0
+Version: 0.53.1
 License: Artistic-2.0
 Encoding: UTF-8
 Author: The Bioconductor Dev Team
 Maintainer: Hervé Pagès <hpages.on.github@gmail.com>
-Depends: R (>= 4.0.0), methods, utils, graphics, stats
+Depends: R (>= 4.0.0), methods, utils, graphics, stats, generics
 Imports: methods, utils, graphics, stats
 Suggests: Biobase, S4Vectors, IRanges, S4Arrays, SparseArray, DelayedArray,
 	HDF5Array, GenomicRanges, pwalign, Rsamtools, AnnotationDbi,
@@ -44,7 +44,7 @@ Collate: S3-classes-as-S4-classes.R
 	rep.R
 	row_colnames.R
 	saveRDS.R
-	sets.R
+	setops.R
 	sort.R
 	start.R
 	subset.R

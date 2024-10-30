@@ -104,9 +104,6 @@ export(
     ## from R/saveRDS.R:
     saveRDS,
 
-    ## from R/sets.R:
-    union, intersect, setdiff,
-
     ## from R/sort.R:
     sort,
 
@@ -184,6 +181,12 @@ export(
 
     ## from R/xtabs.R:
     xtabs
+)
+
+### Generics for functions defined in CRAN package generics:
+export(
+    ## from R/setops.R:
+    union, intersect, setdiff
 )
 
 

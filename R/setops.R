@@ -1,5 +1,5 @@
 ### =========================================================================
-### The union(), intersect() and setdiff() generics
+### The union(), intersect(), setdiff(), and setequal() generics
 ### -------------------------------------------------------------------------
 ###
 ### The default methods are defined in CRAN package generics.
@@ -18,5 +18,10 @@ setGeneric("intersect",
 setGeneric("setdiff",
     function(x, y, ...) standardGeneric("setdiff"),
     useAsDefault=generics::setdiff
+)
+
+setGeneric("setequal",
+    function(x, y, ...) standardGeneric("setequal"),
+    useAsDefault=generics::setequal
 )
 

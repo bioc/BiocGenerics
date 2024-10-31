@@ -186,7 +186,7 @@ export(
 ### Generics for functions defined in CRAN package generics:
 export(
     ## from R/setops.R:
-    union, intersect, setdiff
+    union, intersect, setdiff, setequal
 )
 
 

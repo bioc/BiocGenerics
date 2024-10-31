@@ -39,8 +39,8 @@ rep.int(x, times)
 
 \seealso{
   \itemize{
-    \item \code{base::\link[base]{rep.int}} for the default \code{rep.int},
-          \code{intersect}, and \code{setdiff} methods.
+    \item \code{base::\link[base]{rep.int}} for the default \code{rep.int}
+          method.
 
     \item \code{\link[methods]{showMethods}} for displaying a summary of the
           methods defined for a given generic function.

@@ -155,7 +155,8 @@
       \item setops:
             \code{BiocGenerics::\link[BiocGenerics]{union}},
             \code{BiocGenerics::\link[BiocGenerics]{intersect}},
-            \code{BiocGenerics::\link[BiocGenerics]{setdiff}}
+            \code{BiocGenerics::\link[BiocGenerics]{setdiff}},
+            \code{BiocGenerics::\link[BiocGenerics]{setequal}}
     }
   }
 

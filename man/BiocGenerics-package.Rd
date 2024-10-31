@@ -15,7 +15,7 @@
   in 2 categories:
   \enumerate{
     \item Functions already defined in base R or in CRAN package
-          \pkg{generics} and explicitly promoted to S4 generics in
+          \pkg{generics}, and explicitly promoted to S4 generics in
           \pkg{BiocGenerics}
     \item S4 generics specific to Bioconductor.
   }

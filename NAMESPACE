@@ -3,6 +3,8 @@ import(utils)
 import(graphics)
 import(stats)
 
+import(generics)
+
 exportClasses(
     ## from R/S3-classes-as-S4-classes.R:
     connection,

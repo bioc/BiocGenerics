@@ -20,11 +20,11 @@ exportClasses(
 
 
 ### ==========================================================================
-### Export functions defined in base R and explicitly promoted to generics in
-### the BiocGenerics package
+### Export functions defined in base R and explicitly promoted to S4 generics
+### in the BiocGenerics package
 ### --------------------------------------------------------------------------
 
-### Generics for functions defined in package base:
+### S4 generics for functions defined in package base:
 export(
     ## from R/aperm.R:
     aperm,
@@ -144,13 +144,13 @@ export(
 S3method(format, list)
 export(format.list)
 
-### Generics for functions defined in package utils:
+### S4 generics for functions defined in package utils:
 export(
     ## from R/relist.R:
     relist
 )
 
-### Generics for functions defined in package graphics:
+### S4 generics for functions defined in package graphics:
 export(
     ## from R/boxplot.R:
     boxplot,
@@ -159,7 +159,7 @@ export(
     image
 )
 
-### Generics for functions defined in package stats:
+### S4 generics for functions defined in package stats:
 export(
     ## from R/density.R:
     density,
@@ -183,7 +183,7 @@ export(
     xtabs
 )
 
-### Generics for functions defined in CRAN package generics:
+### S4 generics for S3 generics defined in CRAN package 'generics':
 export(
     ## from R/setops.R:
     union, intersect, setdiff, setequal
@@ -191,10 +191,13 @@ export(
 
 
 ### ==========================================================================
-### Export Bioconductor specific generics and their methods
+### Export Bioconductor specific S4 generics and their methods
 ### --------------------------------------------------------------------------
 
 export(
+    ## from R/add_suffix.R:
+    add_prefix, add_suffix,
+
     ## from R/annotation.R:
     annotation, "annotation<-",
 
@@ -263,6 +266,9 @@ export(
 )
 
 exportMethods(
+    ## from R/add_suffix.R:
+    add_prefix, add_suffix,
+
     ## from R/combine.R:
     combine,
 

@@ -66,6 +66,7 @@ Collate: S3-classes-as-S4-classes.R
 	residuals.R
 	weights.R
 	xtabs.R
+	add_suffix.R
 	annotation.R
 	combine.R
 	containsOutOfMemoryData.R

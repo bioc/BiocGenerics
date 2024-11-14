@@ -62,8 +62,6 @@ setGeneric("paste2", function(x, y) standardGeneric("paste2"))
 
     x_len <- length(x)
     y_len <- length(y)
-    if (y_len > x_len)
-        stop("non-array object is longer than array object")
 
     ## Zero-length case.
     if (x_len == 0L) {
@@ -75,6 +73,8 @@ setGeneric("paste2", function(x, y) standardGeneric("paste2"))
         return(y)  # only case where we don't return an array
 
     ## Non zero-length case.
+    if (y_len > x_len)
+        stop("non-array object is longer than array object")
     ans <- if (switch) paste0(y, x) else paste0(x, y)
     warn_msg <- c("longer object length is not a ",
                   "multiple of shorter object length")

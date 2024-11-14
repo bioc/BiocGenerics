@@ -197,9 +197,6 @@ export(
 ### --------------------------------------------------------------------------
 
 export(
-    ## from R/add_suffix.R:
-    add_prefix, add_suffix,
-
     ## from R/annotation.R:
     annotation, "annotation<-",
 
@@ -238,6 +235,9 @@ export(
     organism, "organism<-",
     species, "species<-",
 
+    ## from R/paste2.R:
+    paste2,
+
     ## from R/path.R:
     path, "path<-",
     basename, "basename<-",
@@ -268,14 +268,14 @@ export(
 )
 
 exportMethods(
-    ## from R/add_suffix.R:
-    add_prefix, add_suffix,
-
     ## from R/combine.R:
     combine,
 
     ## from R/containsOutOfMemoryData.R:
     containsOutOfMemoryData,
+
+    ## from R/paste2.R:
+    paste2,
 
     ## from R/path.R:
     basename, "basename<-",
@@ -300,6 +300,9 @@ exportMethods(
 ### --------------------------------------------------------------------------
 
 export(
+    ## from R/paste2.R:
+    add_prefix, add_suffix,
+
     ## from R/strand.R:
     unstrand
 )

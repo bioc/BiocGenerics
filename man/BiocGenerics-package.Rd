@@ -201,6 +201,8 @@
             \code{\link[BiocGenerics]{species}},
             \code{\link[BiocGenerics]{species<-}}
 
+      \item \code{\link[BiocGenerics]{paste2}}
+
       \item \code{\link[BiocGenerics]{path}},
             \code{\link[BiocGenerics]{path<-}},
             \code{\link[BiocGenerics]{basename}},

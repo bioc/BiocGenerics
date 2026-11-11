@@ -243,6 +243,8 @@
             \code{\link[BiocGenerics]{type<-}}
 
       \item \code{\link[BiocGenerics]{updateObject}}
+
+      \item \code{\link[BiocGenerics]{version}}
     }
   }
 }

@@ -288,7 +288,10 @@ export(
     ## from R/updateObject.R:
     updateObject,
     updateObjectFromSlots,
-    getObjectSlots
+    getObjectSlots,
+
+    ## from R/version.R:
+    version
 )
 
 exportMethods(
